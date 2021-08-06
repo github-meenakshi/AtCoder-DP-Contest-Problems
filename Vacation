@@ -1,0 +1,28 @@
+#include <iostream>
+#include <algorithm>
+#include <math.h>
+using namespace std;
+
+int n,k;
+int dp[100005];
+int arr[100005];
+int solve(int ind){
+    if(ind == n) return 0;
+    if(dp[ind]!=-1) return dp[ind];
+    int mini = 1000000010;
+    for(int i = ind+1;i<=min(n,ind+k);i++){
+        mini = min(mini,abs(arr[i]-arr[ind])+solve(i));
+        }
+        return dp[ind] = mini;
+    }
+int main(){
+    cin>>n>>k;
+    for(int i = 1;i<=n;i++){
+        cin>>arr[i];
+        dp[i] = -1;
+        }
+        int ans = solve(1);
+        cout<<ans<<endl;
+        
+        return 0;
+    }
